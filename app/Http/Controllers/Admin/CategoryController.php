@@ -10,21 +10,21 @@ class CategoryController extends Controller
     public function getIndex()
     {
         $main_categories = Category::where('parent_id', null)->orderBy('order')->get();
-        return view('backend/category/index', array('main_categories' => $main_categories));
+        return view('backend/category/index', ['main_categories' => $main_categories]);
     }
 
     public function getEdit($categoryid)
     {
         $category = Category::find($categoryid);
         $categories = Category::where('parent_id', null)->get();
-        return view('backend/category/createedit', array('category' => $category, 'categories' => $categories));
+        return view('backend/category/createedit', ['category' => $category, 'categories' => $categories]);
     }
 
     public function getCreate()
     {
         $category = new Category();
         $categories = Category::where('parent_id', null)->get();
-        return view('backend/category/createedit', array('category' => $category, 'categories' => $categories));
+        return view('backend/category/createedit', ['category' => $category, 'categories' => $categories]);
     }
 
     public function postCreateEdit(Request $request)

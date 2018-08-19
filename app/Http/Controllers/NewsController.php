@@ -10,7 +10,7 @@ class NewsController extends Controller
     public function getIndex()
     {
         $posts = Post::where("type", "=", "news")->orderBy('created_at', 'desc')->get();
-        return view('frontend.news.index', array('posts' => $posts));
+        return view('frontend.news.index', ['posts' => $posts]);
     }
 
     public function getPost($id, $slug = "")
@@ -27,6 +27,6 @@ class NewsController extends Controller
             return redirect('news/'.$post->id.'/'.$post->slug, 301);
         }
 
-        return view('frontend.news.post', array('post' => $post));
+        return view('frontend.news.post', ['post' => $post]);
     }
 }

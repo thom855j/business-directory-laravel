@@ -48,6 +48,6 @@ class SearchController extends Controller
 
         
 
-        return view('frontend/search', array('listings' => $listings, 'main_categories' => $main_categories, 'result_count' => $result_count));
+        return view('frontend/search', ['listings' => $listings, 'main_categories' => $main_categories, 'result_count' => $result_count]);
     }
 }

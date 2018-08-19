@@ -10,19 +10,19 @@ class NewsController extends Controller
     public function getIndex(Request $request)
     {
         $posts = Post::where("type", "=", "news")->orderBy('created_at', 'desc')->get();
-        return view('backend.news.index', array('posts' => $posts));
+        return view('backend.news.index', ['posts' => $posts]);
     }
 
     public function getCreate()
     {
         $post = new Post;
-        return view('backend.news.createedit', array('post' => $post));
+        return view('backend.news.createedit', ['post' => $post]);
     }
 
     public function getEdit($id)
     {
         $post = Post::find($id);
-        return view('backend.news.createedit', array('post' => $post));
+        return view('backend.news.createedit', ['post' => $post]);
     }
 
     public function getDelete($id)

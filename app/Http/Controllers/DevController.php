@@ -25,7 +25,7 @@ class DevController extends Controller
         })->whereNotNull("address")->where("address", "!=", "")->get();
 
         foreach ($listings as $listing) {
-            $param = array("address"=>$listing->address);
+            $param = ["address"=>$listing->address];
             $response = \Geocoder::geocode('json', $param);
             $response_obj = json_decode($response);
             

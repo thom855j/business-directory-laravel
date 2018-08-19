@@ -8,7 +8,7 @@ class OpeningTime extends Model
 {
     protected $table = 'openingtimes';
 
-    protected $fillable = array( 'weekday', 'start', 'end' );
+    protected $fillable = [ 'weekday', 'start', 'end' ];
 
     public $timestamps = false;
 

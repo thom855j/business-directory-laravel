@@ -28,7 +28,7 @@ class ListingController extends Controller
         $listings = $listings->orderBy('created_at', 'desc')->paginate(20);
 
         $listings->setPath('');
-        return view('backend/listing/index', array('listings' => $listings));
+        return view('backend/listing/index', ['listings' => $listings]);
     }
 
     public function getCreate()
@@ -36,7 +36,7 @@ class ListingController extends Controller
         $listing = new Listing();
         $users = User::all();
         $main_categories = Category::where('parent_id', null)->get();
-        return view('backend/listing/createedit', array('main_categories' => $main_categories, 'listing' => $listing, 'users' => $users));
+        return view('backend/listing/createedit', ['main_categories' => $main_categories, 'listing' => $listing, 'users' => $users]);
     }
 
     public function getEdit($listingid)
@@ -45,7 +45,7 @@ class ListingController extends Controller
         $listing = Listing::find($listingid);
         $users = User::all();
 
-        $openingtimes = array();
+        $openingtimes = [];
         $openingtimes['Monday'] = OpeningTime::where("weekday", "=", "Monday")->where("listing_id", "=", $listingid)->first();
         $openingtimes['Tuesday'] = OpeningTime::where("weekday", "=", "Tuesday")->where("listing_id", "=", $listingid)->first();
         $openingtimes['Wednesday'] = OpeningTime::where("weekday", "=", "Wednesday")->where("listing_id", "=", $listingid)->first();
@@ -57,7 +57,7 @@ class ListingController extends Controller
         $main_categories = Category::where('parent_id', null)->get();
         $selected_categories = $listing->categories()->select('categories.id AS id')->lists('id')->all();
 
-        return view('backend/listing/createedit', array('listing' => $listing, 'main_categories' => $main_categories, 'selected_categories' => $selected_categories, 'openingtimes' => $openingtimes, 'users' => $users));
+        return view('backend/listing/createedit', ['listing' => $listing, 'main_categories' => $main_categories, 'selected_categories' => $selected_categories, 'openingtimes' => $openingtimes, 'users' => $users]);
     }
 
     public function postCreateEdit(Request $request)
@@ -129,7 +129,7 @@ class ListingController extends Controller
 
             // opening times
             $listing->openingtimes()->delete();
-            $openingtimes = array();
+            $openingtimes = [];
 
             if (!empty($request->monday_start)) {
                 $openingtimes[] = new OpeningTime(['weekday' => 'Monday', 'start' => $request->monday_start, 'end' => $request->monday_end]);
@@ -172,7 +172,7 @@ class ListingController extends Controller
     public function getVerifyListings()
     {
         $listings = Listing::where("verified", "=", false)->get();
-        return view('backend/listing/verifylistings', array('listings' => $listings));
+        return view('backend/listing/verifylistings', ['listings' => $listings]);
     }
 
     public function postAjaxVerify(Request $request)
@@ -230,7 +230,7 @@ class ListingController extends Controller
     public function getApproveListings()
     {
         $listings = Listing::where("approved", "=", false)->where("spam", "=", false)->get();
-        return view('backend/listing/approvelistings', array('listings' => $listings));
+        return view('backend/listing/approvelistings', ['listings' => $listings]);
     }
 
     public function postAjaxApprove(Request $request)
@@ -283,7 +283,7 @@ class ListingController extends Controller
     public function getClaims()
     {
         $claims = Claim::all();
-        return view('backend.listing.claims', array('claims' => $claims));
+        return view('backend.listing.claims', ['claims' => $claims]);
     }
 
     public function postAjaxClaimAssignListing(Request $request)
@@ -301,7 +301,7 @@ class ListingController extends Controller
                     $user = User::find($listing->user_id);
 
                     if ($user) {
-                        Mail::send('emails.claimsuccess', array(), function ($message) use ($user) {
+                        Mail::send('emails.claimsuccess', [], function ($message) use ($user) {
                             $message->to($user->email)->subject('Listing claimed successfully');
                         });
                     }

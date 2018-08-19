@@ -21,19 +21,19 @@ class UserController extends Controller
         $users = $users->paginate(20);
 
         $users->setPath('');
-        return view('backend/user/index', array('users' => $users));
+        return view('backend/user/index', ['users' => $users]);
     }
 
     public function getEdit($userid)
     {
         $user = User::find($userid);
-        return view('backend/user/createedit', array('user' => $user));
+        return view('backend/user/createedit', ['user' => $user]);
     }
 
     public function getCreate()
     {
         $user = new User();
-        return view('backend/user/createedit', array('user' => $user));
+        return view('backend/user/createedit', ['user' => $user]);
     }
 
 

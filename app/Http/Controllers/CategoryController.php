@@ -24,6 +24,6 @@ class CategoryController extends Controller
 
         $main_categories = Category::where('parent_id', null)->get();
 
-        return view('frontend/category', array('category' => $category, 'listings' => $listings, 'main_categories' => $main_categories));
+        return view('frontend/category', ['category' => $category, 'listings' => $listings, 'main_categories' => $main_categories]);
     }
 }

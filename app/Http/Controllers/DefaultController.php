@@ -30,27 +30,27 @@ class DefaultController extends Controller
 
         # cached markers
         $markers = Cache::remember('frontpage_markers', 60, function () use ($listings) {
-            $markers = array();
+            $markers = [];
             foreach ($listings as $listing) {
-                $markers[] = array($listing->title, $listing->latitude, $listing->longitude);
+                $markers[] = [$listing->title, $listing->latitude, $listing->longitude];
             }
             return $markers;
         });
 
         # cached infoWindowContent
         $infoWindowContent = Cache::remember('frontpage_infowindowcontent', 60, function () use ($listings) {
-            $infoWindowContent = array();
+            $infoWindowContent = [];
             foreach ($listings as $listing) {
                 $logo_url = (isset($listing) && $listing->logo != null)?URL::to('img/listing/logo/'.$listing->logo):'';
                 $logo_html =  ($logo_url != '')? '<img class="img-responsive" style="max-width:180px;max-height:80px;" alt="" src="'.$logo_url.'" />' : '' ;
-                $infoWindowContent[] = array($logo_html.'<h3>'.$listing->title.'</h3><p>'.str_limit($listing->description, 120).' <a href="'.URL::to('listing/'.$listing->id.'/'.$listing->slug).'">[ read more ]</a></p>');
+                $infoWindowContent[] = [$logo_html.'<h3>'.$listing->title.'</h3><p>'.str_limit($listing->description, 120).' <a href="'.URL::to('listing/'.$listing->id.'/'.$listing->slug).'">[ read more ]</a></p>'];
             }
             return $infoWindowContent;
         });
 
         $news = Post::where("type", "=", "news")->orderBy('created_at', 'desc')->take(3)->get();
         $main_categories = Category::where('parent_id', null)->orderBy('order')->get();
-        return view('frontend/home', array('markers' => $markers, 'infoWindowContent' => $infoWindowContent, 'main_categories' => $main_categories, 'news' => $news));
+        return view('frontend/home', ['markers' => $markers, 'infoWindowContent' => $infoWindowContent, 'main_categories' => $main_categories, 'news' => $news]);
     }
 
     public function postSubscribeNewsletter(Request $request)

@@ -11,6 +11,6 @@ class DashboardController extends Controller
     {
         $usercount = User::count();
         $listingcount = Listing::where("approved", "=", true)->count();
-        return view('backend/dashboard', array('usercount' => $usercount, 'listingcount' => $listingcount));
+        return view('backend/dashboard', ['usercount' => $usercount, 'listingcount' => $listingcount]);
     }
 }

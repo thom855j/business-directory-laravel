@@ -18,7 +18,7 @@ class SettingController extends Controller
         //print($result->value);
 
         //$settings = Settings();
-        return view('backend/setting/index', array("settings" => $settings));
+        return view('backend/setting/index', ["settings" => $settings]);
     }
 
 

@@ -58,7 +58,7 @@
 
 					@endforeach
 
-					{!! $listings->appends( Input::all() )->render() !!}
+					{!! $listings->appends( Request::all() )->render() !!}
 
 				</div>
 

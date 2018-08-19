@@ -20,7 +20,6 @@ class CreateSlugColsForCatLis extends Migration
         Schema::table('categories', function (Blueprint $table) {
             $table->string('slug')->default('')->after('name');
         });
-
     }
 
     /**

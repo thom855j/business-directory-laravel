@@ -12,8 +12,7 @@ class CreateSocialMediaCols extends Migration
      */
     public function up()
     {
-        Schema::table('listings', function($table)
-        {
+        Schema::table('listings', function ($table) {
             $table->string('facebook')->after('email')->nullable();
             $table->string('twitter')->after('facebook')->nullable();
         });

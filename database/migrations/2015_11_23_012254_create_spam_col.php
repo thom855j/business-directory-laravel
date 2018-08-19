@@ -12,7 +12,7 @@ class CreateSpamCol extends Migration
      */
     public function up()
     {
-        Schema::table('listings', function($table){
+        Schema::table('listings', function ($table) {
             $table->boolean('spam')->default(0)->after('verified');
         });
     }
@@ -24,7 +24,7 @@ class CreateSpamCol extends Migration
      */
     public function down()
     {
-        Schema::table('listings', function($table){
+        Schema::table('listings', function ($table) {
             $table->dropColumn('spam');
         });
     }

@@ -4,39 +4,37 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 
-class SettingController extends Controller {
+class SettingController extends Controller
+{
 
 
 
-	public function getIndex()
+    public function getIndex()
     {
 
-    	$settings = Setting::all();
+        $settings = Setting::all();
 
-    	//$result = Setting::where("key","=","test")->first();
-    	//print($result->value);
+        //$result = Setting::where("key","=","test")->first();
+        //print($result->value);
 
-    	//$settings = Settings();
-    	return view('backend/setting/index', array("settings" => $settings));
-
+        //$settings = Settings();
+        return view('backend/setting/index', ["settings" => $settings]);
     }
 
 
     public function postIndex(Request $request)
     {
 
-    	$settings = Setting::all();
+        $settings = Setting::all();
 
-    	foreach($settings as $setting){
-    		$cur_key = $setting->key;
-    		$setting->value = $request->$cur_key;
-    		$setting->save();
-    	}
+        foreach ($settings as $setting) {
+            $cur_key = $setting->key;
+            $setting->value = $request->$cur_key;
+            $setting->save();
+        }
 
 
-    	flash()->success('Settings updated successfully.');
-    	return redirect('admin/settings');
-
+        flash()->success('Settings updated successfully.');
+        return redirect('admin/settings');
     }
-
 }

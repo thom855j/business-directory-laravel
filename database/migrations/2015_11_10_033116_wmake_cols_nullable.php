@@ -12,8 +12,7 @@ class WmakeColsNullable extends Migration
      */
     public function up()
     {
-        Schema::table('listings', function($table)
-        {
+        Schema::table('listings', function ($table) {
             $table->string('title')->nullable()->change();
             $table->string('slug')->nullable()->change();
             $table->string('description')->nullable()->change();
@@ -32,8 +31,7 @@ class WmakeColsNullable extends Migration
      */
     public function down()
     {
-        Schema::table('listings', function($table)
-        {
+        Schema::table('listings', function ($table) {
             $table->string('title')->change();
             $table->string('slug')->change();
             $table->string('description')->change();

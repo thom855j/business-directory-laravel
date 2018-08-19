@@ -20,7 +20,6 @@ class Category extends Model
 
     public function listings()
     {
-    	return $this->belongsToMany('App\Models\Listing','listing_categories','category_id','listing_id');
+        return $this->belongsToMany('App\Models\Listing', 'listing_categories', 'category_id', 'listing_id');
     }
-
 }

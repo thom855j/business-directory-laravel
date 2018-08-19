@@ -12,7 +12,7 @@ class CreateColOrderCategories extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function($table){
+        Schema::table('categories', function ($table) {
             $table->integer('order')->default(0)->after('slug');
         });
     }
@@ -24,7 +24,7 @@ class CreateColOrderCategories extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function($table){
+        Schema::table('categories', function ($table) {
             $table->dropColumn('order');
         });
     }

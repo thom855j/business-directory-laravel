@@ -4,37 +4,38 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 
-class NewsController extends Controller {
+class NewsController extends Controller
+{
 
     public function getIndex(Request $request)
     {
-        $posts = Post::where("type","=","news")->orderBy('created_at', 'desc')->get();
-    	return view('backend.news.index', array('posts' => $posts));
+        $posts = Post::where("type", "=", "news")->orderBy('created_at', 'desc')->get();
+        return view('backend.news.index', ['posts' => $posts]);
     }
 
     public function getCreate()
     {
         $post = new Post;
-        return view('backend.news.createedit', array('post' => $post));
+        return view('backend.news.createedit', ['post' => $post]);
     }
 
     public function getEdit($id)
     {
         $post = Post::find($id);
-        return view('backend.news.createedit', array('post' => $post));
+        return view('backend.news.createedit', ['post' => $post]);
     }
 
     public function getDelete($id)
     {
         $post = Post::find($id);
 
-        if($post){
-            if($post->delete()){
+        if ($post) {
+            if ($post->delete()) {
                 flash()->success('News Post deleted successfully.');
-            }else{
+            } else {
                 flash()->error('Can not delete News Post.');
             }
-        }else{
+        } else {
             flash()->error('Can not find News Post in database.');
         }
 
@@ -46,7 +47,7 @@ class NewsController extends Controller {
         $newPost = false;
         $post = Post::find($request->id);
 
-        if(!$post){
+        if (!$post) {
             $post = new Post;
             $newPost = true;
         }
@@ -56,24 +57,16 @@ class NewsController extends Controller {
         $post->content = $request->content;
         $post->type = "news";
 
-        if($post->save())
-        {
-            if($newPost)
-            {
+        if ($post->save()) {
+            if ($newPost) {
                 flash()->success('News article created successfully.');
-            }else{
+            } else {
                 flash()->success('News article updated successfully.');
             }
-            
-        }else{
+        } else {
             flash()->error('Error occured while saving news article.');
         }
 
         return redirect('admin/news');
-
-
     }
-  
-
-
 }

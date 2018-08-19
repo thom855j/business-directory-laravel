@@ -205,8 +205,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Form'=> Illuminate\Html\FormFacade::class,
-        'HTML'=> Illuminate\Html\HtmlFacade::class,
+        'Form'=> Collective\Html\FormFacade::class,
+        'HTML'=> Collective\Html\HtmlFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,

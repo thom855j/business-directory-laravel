@@ -18,5 +18,4 @@ class OpeningTime extends Model
     {
         return $this->belongsTo('App\Models\Listing');
     }
-    
 }

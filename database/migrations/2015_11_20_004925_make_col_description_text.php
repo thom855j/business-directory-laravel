@@ -12,7 +12,7 @@ class MakeColDescriptionText extends Migration
      */
     public function up()
     {
-        Schema::table('listings', function($table){
+        Schema::table('listings', function ($table) {
             $table->text('description')->nullable()->change();
         });
     }
@@ -24,7 +24,7 @@ class MakeColDescriptionText extends Migration
      */
     public function down()
     {
-        Schema::table('listings', function($table){
+        Schema::table('listings', function ($table) {
             $table->string('description')->nullable()->change();
         });
     }

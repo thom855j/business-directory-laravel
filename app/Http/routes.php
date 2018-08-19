@@ -39,7 +39,7 @@ Route::post('subscribe-newsletter', 'DefaultController@postSubscribeNewsletter')
 
 // Authenticated Routes
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('submit-listing', 'ListingController@getCreate');
+    Route::get('submit-listing', 'ListingController@getCreate');
     Route::get('my-listings', 'ListingController@getMyListings');
     Route::get('my-account', 'UserController@getAccount');
     Route::get('change-password', 'UserController@getChangePassword');
@@ -48,7 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('listing/edit/{listingid?}', 'ListingController@postCreateEdit');
     Route::get('listing/delete/{listingid}', 'ListingController@getDelete');
     Route::get('listing/claim/{listingid}', 'ListingController@getClaim');
-
 });
 
 Route::get('search', 'SearchController@getSearch');
@@ -62,8 +61,8 @@ Route::get('news/{id}/{slug?}', 'NewsController@getPost');
 // Admin Routes
 //Route::group(['prefix' => 'admin', 'middleware' => 'App\Http\Middleware\AdminMiddleware'], function () {
 
-Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
-	Route::get('/', 'Admin\DashboardController@getIndex');
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
+    Route::get('/', 'Admin\DashboardController@getIndex');
 
     Route::get('categories', 'Admin\CategoryController@getIndex');
     Route::get('category/create', 'Admin\CategoryController@getCreate');
@@ -103,7 +102,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
     Route::get('news/delete/{id}', 'Admin\NewsController@getDelete');
     Route::get('news/create', 'Admin\NewsController@getCreate');
     Route::post('news/edit/{id?}', 'Admin\NewsController@postCreateEdit');
-
-
 });
-

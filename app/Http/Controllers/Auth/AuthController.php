@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Validator, Mail, Auth, Hash;
+use Validator;
+use Mail;
+use Auth;
+use Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 use Illuminate\Http\Request;
-
 
 class AuthController extends Controller
 {
@@ -77,8 +79,8 @@ class AuthController extends Controller
         ]);
 
 
-        if($user){
-            Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($data) {
+        if ($user) {
+            Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function ($message) use ($data) {
                 $message->to($data['email'], $data['firstname'].' '.$data['lastname'])->subject('Verify your email address');
             });
         }
@@ -86,8 +88,6 @@ class AuthController extends Controller
         flash()->success('Please click on the link in the email you have received to verify your email address.');
 
         return $user;
-
-
     }
 
 
@@ -105,15 +105,13 @@ class AuthController extends Controller
         }
 
         if (Auth::validate(['email' => $request->email, 'password' => $request->password, 'confirmed' => 0])) {
-
-            if($user->confirmation_code == null)
-            {
+            if ($user->confirmation_code == null) {
                 $confirmation_code = str_random(30);
                 $user->confirmation_code = $confirmation_code;
                 $user->save();
             }
 
-            Mail::send('emails.verify', ['confirmation_code' => $user->confirmation_code], function($message) use ($user) {
+            Mail::send('emails.verify', ['confirmation_code' => $user->confirmation_code], function ($message) use ($user) {
                 $message->to($user->email, $user->firstname.' '. $user->lastname)->subject('Verify your email address');
             });
 
@@ -145,12 +143,11 @@ class AuthController extends Controller
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
             $this->throwValidationException(
-                $request, $validator
+                $request,
+                $validator
             );
         }
         $this->create($request->all());
         return redirect($this->redirectPath());
     }
-
-
 }

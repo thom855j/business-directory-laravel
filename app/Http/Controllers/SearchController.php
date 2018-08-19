@@ -8,7 +8,8 @@ use App\Models\Listing;
 
 use DB;
 
-class SearchController extends Controller {
+class SearchController extends Controller
+{
 
 
 
@@ -17,31 +18,27 @@ class SearchController extends Controller {
         $main_categories = Category::where('parent_id', null)->get();
 
         $listing = new Listing;
-        $listing = $listing->where("approved","=",true);
+        $listing = $listing->where("approved", "=", true);
 
-        if(!empty($request->keyword)){
-
-            $listing = $listing->where(function($query) use ($request){
+        if (!empty($request->keyword)) {
+            $listing = $listing->where(function ($query) use ($request) {
                 $query->where('title', 'LIKE', '%'. $request->keyword .'%')
                       ->orWhere('description', 'LIKE', '%'. $request->keyword .'%');
             });
-
         }
 
-        if(!empty($request->categories)){
-            $listing = $listing->whereHas('categories', function($query) use ($request) {
+        if (!empty($request->categories)) {
+            $listing = $listing->whereHas('categories', function ($query) use ($request) {
                 $query->whereIn('id', $request->categories);
             });
-
         }
 
-        if(!empty($request->lat) && !empty($request->lng)){
+        if (!empty($request->lat) && !empty($request->lng)) {
             $lat = $request->lat;
             $lng = $request->lng;
             $radius = empty($request->radius) ? 20 : $request->radius;
 
             $listing = $listing->whereRaw('SQRT( POW(69.1 * (latitude - '.$lat.'), 2) + POW(69.1 * ('.$lng.' - longitude) * COS(latitude / 57.3), 2)) < '.$radius);
-
         }
 
         $result_count = $listing->count();
@@ -52,7 +49,5 @@ class SearchController extends Controller {
         
 
         return view('frontend/search', array('listings' => $listings, 'main_categories' => $main_categories, 'result_count' => $result_count));
-
     }
-
 }

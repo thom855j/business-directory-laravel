@@ -19,7 +19,6 @@ class CreateTableOpeningtimes extends Migration
             $table->string('weekday');
             $table->time('start');
             $table->time('end');
-
         });
     }
 

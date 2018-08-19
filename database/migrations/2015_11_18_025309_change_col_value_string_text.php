@@ -12,8 +12,7 @@ class ChangeColValueStringText extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function($table)
-        {
+        Schema::table('settings', function ($table) {
             $table->text('value')->nullable()->change();
         });
     }
@@ -25,8 +24,7 @@ class ChangeColValueStringText extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function($table)
-        {
+        Schema::table('settings', function ($table) {
             $table->string('value')->nullable()->change();
         });
     }

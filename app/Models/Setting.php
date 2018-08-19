@@ -16,45 +16,40 @@ class Setting extends Model
 
         $result = Setting::where('key', $key)->first();
 
-        if($result){
+        if ($result) {
             return $result->value;
-        }else{
-            if($default == null){
+        } else {
+            if ($default == null) {
                 return false;
-            }else{
+            } else {
                 return $default;
             }
-            
         }
-
     }
 
     public static function set($key, $value)
     {
         $result = Setting::where('key', $key)->first();
 
-        if($result){
-
+        if ($result) {
             $result->value = $value;
 
-            if($result->save()){
+            if ($result->save()) {
                 return true;
             }
-            
         }
 
         return false;
-
     }
 
     public static function forget($key)
     {
         $result = Setting::where('key', $key)->first();
 
-        if($result){
-            if($result->delete()){
+        if ($result) {
+            if ($result->delete()) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
@@ -64,11 +59,10 @@ class Setting extends Model
 
     public static function flush()
     {
-        if(Setting::getQuery()->delete()){
+        if (Setting::getQuery()->delete()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-
 }

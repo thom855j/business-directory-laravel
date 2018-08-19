@@ -20,7 +20,6 @@ class CreatePivotTableListingCategories extends Migration
             $table->integer('listing_id');
             $table->integer('category_id');
         });
-
     }
 
     /**
@@ -35,6 +34,5 @@ class CreatePivotTableListingCategories extends Migration
         /*Schema::table('listings', function (Blueprint $table) {
             $table->string('categories')->after('id')->nullable();
         });*/
-        
     }
 }

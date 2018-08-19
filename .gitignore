@@ -4,4 +4,3 @@ Homestead.yaml
 /public/storage
 Homestead.json
 .env
-/public/.htaccess

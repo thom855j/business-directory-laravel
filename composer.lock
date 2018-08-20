@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af4c15e77d8b6259507ac3cf8ea50c39",
+    "content-hash": "0a4bcd59a42435c5ebf4d659f792cc3d",
     "packages": [
         {
             "name": "alexpechkarev/google-geocoder",

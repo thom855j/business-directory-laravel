@@ -15,7 +15,7 @@
         "zizaco/entrust": "dev-laravel-5",
         "intervention/image": "dev-master",
         "doctrine/dbal": "^2.5",
-        "mews/captcha": "~2.0",
+        "mews/captcha": "~2.2.0",
         "mikemclin/laravel-wp-password": "~2.0.0",
         "nztim/mailchimp": "~3.1.2",
         "alexpechkarev/google-geocoder": "dev-master"

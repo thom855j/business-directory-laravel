@@ -4,3 +4,4 @@ Homestead.yaml
 /public/storage
 Homestead.json
 .env
+composer.phar

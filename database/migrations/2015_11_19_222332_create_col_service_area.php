@@ -12,7 +12,7 @@ class CreateColServiceArea extends Migration
      */
     public function up()
     {
-        Schema::table('listings', function($table){
+        Schema::table('listings', function ($table) {
             $table->text('service_area')->after('twitter')->nullable();
         });
     }
@@ -24,7 +24,7 @@ class CreateColServiceArea extends Migration
      */
     public function down()
     {
-        Schema::table('listings', function($table){
+        Schema::table('listings', function ($table) {
             $table->dropColumn('service_area');
         });
     }

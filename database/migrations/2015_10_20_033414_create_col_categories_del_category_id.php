@@ -29,6 +29,5 @@ class CreateColCategoriesDelCategoryId extends Migration
             $table->integer('category_id')->after('id')->nullable();
             $table->dropColumn('categories');
         });
-
     }
 }

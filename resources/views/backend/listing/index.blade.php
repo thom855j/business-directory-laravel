@@ -10,7 +10,7 @@
 
 <form action="{{ URL::to('admin/listings') }}" method="GET" enctype="multipart/form-data">
 	<div class="pull-left input-group" style="width:400px;">
-	    <input name="q" type="text" class="form-control" placeholder="Search ..." value="{{ Input::get('q') }}" autocomplete="off">
+	    <input name="q" type="text" class="form-control" placeholder="Search ..." value="{{ Request::get('q') }}" autocomplete="off">
 	    <div class="input-group-btn">
 	        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 	    </div>

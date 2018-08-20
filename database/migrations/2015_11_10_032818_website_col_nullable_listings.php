@@ -12,8 +12,7 @@ class WebsiteColNullableListings extends Migration
      */
     public function up()
     {
-        Schema::table('listings', function($table)
-        {
+        Schema::table('listings', function ($table) {
             $table->string('website')->nullable()->change();
         });
     }
@@ -25,8 +24,7 @@ class WebsiteColNullableListings extends Migration
      */
     public function down()
     {
-        Schema::table('listings', function($table)
-        {
+        Schema::table('listings', function ($table) {
             $table->string('website')->change();
         });
     }

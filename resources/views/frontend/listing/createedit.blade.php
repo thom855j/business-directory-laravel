@@ -46,7 +46,7 @@
 		        	<label for="title" class="control-label">Organisation Name</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		            <input type="text" class="form-control" id="title" name="title" value="{{ (Input::old('title')) ? Input::old('title') : $listing->title }}">
+		            <input type="text" class="form-control" id="title" name="title" value="{{ (Request::old('title')) ? Request::old('title') : $listing->title }}">
 		        </div>
 		    </div>
 
@@ -61,7 +61,7 @@
 			        @foreach($main_categories as $cat)
 			        <optgroup label="{{$cat->name}}">
 			          @foreach($cat->children as $child)
-			            @if( (isset($selected_categories) && in_array($child->id, $selected_categories)) || is_array(Input::old('categories')) && in_array($child->id, Input::old('categories')) )
+			            @if( (isset($selected_categories) && in_array($child->id, $selected_categories)) || is_array(Request::old('categories')) && in_array($child->id, Request::old('categories')) )
 			              <option value="{{$child->id}}" selected>{{$child->name}}</option>
 			            @else
 			              <option value="{{$child->id}}">{{$child->name}}</option>
@@ -82,7 +82,7 @@
 		        	<label for="description" class="control-label">Description</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<textarea id="description" name="description" class="form-control" rows="10" placeholder="Write a description of your organisation.">{{ (Input::old('description')) ? Input::old('description') : $listing->description }}</textarea>
+		        	<textarea id="description" name="description" class="form-control" rows="10" placeholder="Write a description of your organisation.">{{ (Request::old('description')) ? Request::old('description') : $listing->description }}</textarea>
 		        </div>
 
 		    </div>
@@ -112,16 +112,16 @@
 
 
 
-	                	<input name="lng" type="hidden" class="form-control" value="{{ (Input::old('lng')) ? Input::old('lng') : $listing->longitude }}">
-	                	<input name="lat" type="hidden" class="form-control" value="{{ (Input::old('lat')) ? Input::old('lat') : $listing->latitude }}">
-	                	<input name="formatted_address" type="hidden" value="{{ (Input::old('formatted_address')) ? Input::old('formatted_address') : $listing->address }}">
+	                	<input name="lng" type="hidden" class="form-control" value="{{ (Request::old('lng')) ? Request::old('lng') : $listing->longitude }}">
+	                	<input name="lat" type="hidden" class="form-control" value="{{ (Request::old('lat')) ? Request::old('lat') : $listing->latitude }}">
+	                	<input name="formatted_address" type="hidden" value="{{ (Request::old('formatted_address')) ? Request::old('formatted_address') : $listing->address }}">
 
 	                	<div class="form-group">
 		                    <div class="input-group">
 
 		                        
 		                        
-		                        <input name="address" type="text" class="form-control" placeholder="Search ..." id="map-search" value="{{ (Input::old('address')) ? Input::old('address') : $listing->address }}">
+		                        <input name="address" type="text" class="form-control" placeholder="Search ..." id="map-search" value="{{ (Request::old('address')) ? Request::old('address') : $listing->address }}">
 
 
 
@@ -148,7 +148,7 @@
 		        	<label for="description" class="control-label">Service area</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<textarea id="service_area" name="service_area" class="form-control" rows="10" placeholder="Suburbs, areas or districts of your service.">{{ (Input::old('service_area')) ? Input::old('service_area') : $listing->service_area }}</textarea>
+		        	<textarea id="service_area" name="service_area" class="form-control" rows="10" placeholder="Suburbs, areas or districts of your service.">{{ (Request::old('service_area')) ? Request::old('service_area') : $listing->service_area }}</textarea>
 		        </div>
 
 		    </div>
@@ -161,28 +161,28 @@
 		        	<label for="phone" class="control-label">Phone</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<input type="text" class="form-control" id="phone" name="phone" value="{{ (Input::old('phone')) ? Input::old('phone') : $listing->phone }}" placeholder="e.g. 012345678">
+		        	<input type="text" class="form-control" id="phone" name="phone" value="{{ (Request::old('phone')) ? Request::old('phone') : $listing->phone }}" placeholder="e.g. 012345678">
 		        </div>
 
 		    	<div class="col-sm-3">
 		        	<label for="phoneafterhours" class="control-label">Phone (After Hours)</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<input type="text" class="form-control" id="phone_afterhours" name="phone_afterhours" value="{{ (Input::old('phone_afterhours')) ? Input::old('phone_afterhours') : $listing->phone_afterhours }}" placeholder="e.g. 012345678">
+		        	<input type="text" class="form-control" id="phone_afterhours" name="phone_afterhours" value="{{ (Request::old('phone_afterhours')) ? Request::old('phone_afterhours') : $listing->phone_afterhours }}" placeholder="e.g. 012345678">
 		        </div>
 
 		    	<div class="col-sm-3">
 		        	<label for="website" class="control-label">Website</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<input type="text" class="form-control" id="website" name="website" value="{{ (Input::old('website')) ? Input::old('website') : $listing->website }}" placeholder="e.g. http://www.example.com">
+		        	<input type="text" class="form-control" id="website" name="website" value="{{ (Request::old('website')) ? Request::old('website') : $listing->website }}" placeholder="e.g. http://www.example.com">
 		        </div>
 
 		    	<div class="col-sm-3">
 		        	<label for="email" class="control-label">Email</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<input type="text" class="form-control" id="email" name="email" value="{{ (Input::old('email')) ? Input::old('email') : $listing->email }}" placeholder="e.g. info@example.com">
+		        	<input type="text" class="form-control" id="email" name="email" value="{{ (Request::old('email')) ? Request::old('email') : $listing->email }}" placeholder="e.g. info@example.com">
 		        </div>
 
 		    </div>
@@ -192,14 +192,14 @@
 		        	<label for="twitter" class="control-label">Twitter</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<input type="text" class="form-control" id="twitter" name="twitter" value="{{ (Input::old('twitter')) ? Input::old('twitter') : $listing->twitter }}" placeholder="e.g. http://www.twitter.com/example">
+		        	<input type="text" class="form-control" id="twitter" name="twitter" value="{{ (Request::old('twitter')) ? Request::old('twitter') : $listing->twitter }}" placeholder="e.g. http://www.twitter.com/example">
 		        </div>
 
 		    	<div class="col-sm-3">
 		        	<label for="facebook" class="control-label">Facebook</label>
 		        </div>
 		        <div class="col-sm-9 form-group">
-		        	<input type="text" class="form-control" id="facebook" name="facebook" value="{{ (Input::old('facebook')) ? Input::old('facebook') : $listing->facebook }}" placeholder="e.g. http://www.facebook.com/example">
+		        	<input type="text" class="form-control" id="facebook" name="facebook" value="{{ (Request::old('facebook')) ? Request::old('facebook') : $listing->facebook }}" placeholder="e.g. http://www.facebook.com/example">
 		        </div>
 
 		    </div>
@@ -234,7 +234,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('monday_start') && Input::old('monday_start') == $time_str_mysql){
+											        if(Request::old('monday_start') && Request::old('monday_start') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Monday"] && $openingtimes["Monday"]->start == $time_str_mysql){
 											        	$selected = "selected";
@@ -265,7 +265,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('monday_end') && Input::old('monday_end') == $time_str_mysql){
+											        if(Request::old('monday_end') && Request::old('monday_end') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Monday"] && $openingtimes["Monday"]->end == $time_str_mysql){
 											        	$selected = "selected";
@@ -303,7 +303,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('tuesday_start') && Input::old('tuesday_start') == $time_str_mysql){
+											        if(Request::old('tuesday_start') && Request::old('tuesday_start') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Tuesday"] && $openingtimes["Tuesday"]->start == $time_str_mysql){
 											        	$selected = "selected";
@@ -334,7 +334,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('tuesday_end') && Input::old('tuesday_end') == $time_str_mysql){
+											        if(Request::old('tuesday_end') && Request::old('tuesday_end') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Tuesday"] && $openingtimes["Tuesday"]->end == $time_str_mysql){
 											        	$selected = "selected";
@@ -373,7 +373,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('wednesday_start') && Input::old('wednesday_start') == $time_str_mysql){
+											        if(Request::old('wednesday_start') && Request::old('wednesday_start') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Wednesday"] && $openingtimes["Wednesday"]->start == $time_str_mysql){
 											        	$selected = "selected";
@@ -404,7 +404,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('wednesday_end') && Input::old('wednesday_end') == $time_str_mysql){
+											        if(Request::old('wednesday_end') && Request::old('wednesday_end') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Wednesday"] && $openingtimes["Wednesday"]->end == $time_str_mysql){
 											        	$selected = "selected";
@@ -442,7 +442,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('thursday_start') && Input::old('thursday_start') == $time_str_mysql){
+											        if(Request::old('thursday_start') && Request::old('thursday_start') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Thursday"] && $openingtimes["Thursday"]->start == $time_str_mysql){
 											        	$selected = "selected";
@@ -473,7 +473,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('thursday_end') && Input::old('thursday_end') == $time_str_mysql){
+											        if(Request::old('thursday_end') && Request::old('thursday_end') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Thursday"] && $openingtimes["Thursday"]->end == $time_str_mysql){
 											        	$selected = "selected";
@@ -512,7 +512,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('friday_start') && Input::old('friday_start') == $time_str_mysql){
+											        if(Request::old('friday_start') && Request::old('friday_start') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Friday"] && $openingtimes["Friday"]->start == $time_str_mysql){
 											        	$selected = "selected";
@@ -543,7 +543,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('friday_end') && Input::old('friday_end') == $time_str_mysql){
+											        if(Request::old('friday_end') && Request::old('friday_end') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Friday"] && $openingtimes["Friday"]->end == $time_str_mysql){
 											        	$selected = "selected";
@@ -582,7 +582,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('saturday_start') && Input::old('saturday_start') == $time_str_mysql){
+											        if(Request::old('saturday_start') && Request::old('saturday_start') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Saturday"] && $openingtimes["Saturday"]->start == $time_str_mysql){
 											        	$selected = "selected";
@@ -613,7 +613,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('saturday_end') && Input::old('saturday_end') == $time_str_mysql){
+											        if(Request::old('saturday_end') && Request::old('saturday_end') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Saturday"] && $openingtimes["Saturday"]->end == $time_str_mysql){
 											        	$selected = "selected";
@@ -652,7 +652,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('sunday_start') && Input::old('sunday_start') == $time_str_mysql){
+											        if(Request::old('sunday_start') && Request::old('sunday_start') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Sunday"] && $openingtimes["Sunday"]->start == $time_str_mysql){
 											        	$selected = "selected";
@@ -683,7 +683,7 @@
 											        $time_str_mysql = date('H:i:s', $time);
 											        $time_str_frontend = date('h:i A', $time);
 
-											        if(Input::old('sunday_end') && Input::old('sunday_end') == $time_str_mysql){
+											        if(Request::old('sunday_end') && Request::old('sunday_end') == $time_str_mysql){
 											        	$selected = "selected";
 											        }elseif(isset($openingtimes) && $openingtimes["Sunday"] && $openingtimes["Sunday"]->end == $time_str_mysql){
 											        	$selected = "selected";
@@ -747,7 +747,7 @@
 		var options = {
 		  details: "#geocomplete-fields",
 		  map: "#geocomplete-fields #googlemap",
-		  location: "{{ (Input::old('address')) ? Input::old('address') : $listing->address }}",
+		  location: "{{ (Request::old('address')) ? Request::old('address') : $listing->address }}",
 		  mapOptions: {
 		    zoom: 10
 		  },

@@ -15,14 +15,11 @@ class Listing extends Model
 
     public function categories()
     {
-    	return $this->belongsToMany('App\Models\Category','listing_categories','listing_id','category_id');
+        return $this->belongsToMany('App\Models\Category', 'listing_categories', 'listing_id', 'category_id');
     }
 
     public function openingtimes()
     {
         return $this->hasMany('App\Models\OpeningTime');
     }
-
-
-
 }

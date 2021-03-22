@@ -105,6 +105,11 @@ class AuthController extends Controller
         }
 
         if (Auth::validate(['email' => $request->email, 'password' => $request->password, 'confirmed' => 0])) {
+            $credentials = $this->getCredentials($request);
+            if (Auth::attempt($credentials, $request->has('remember'))) {
+                return $this->handleUserWasAuthenticated($request, $throttles);
+            }
+            $user = Auth::user();
             if ($user->confirmation_code == null) {
                 $confirmation_code = str_random(30);
                 $user->confirmation_code = $confirmation_code;
@@ -118,11 +123,6 @@ class AuthController extends Controller
             return redirect($this->loginPath())
                 ->withInput($request->only('email', 'remember'))
                 ->withErrors('Your account is not verified. Please check your email inbox.');
-        }
-
-        $credentials = $this->getCredentials($request);
-        if (Auth::attempt($credentials, $request->has('remember'))) {
-            return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
         if ($throttles) {
